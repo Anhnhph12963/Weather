@@ -1,14 +1,14 @@
 package com.example.weather.Model;
 
 public class Comments {
-    private String username,profileImageUrl,comment;
+    private String username, profileImage, comment;
 
     public Comments() {
     }
 
-    public Comments(String username, String profileImageUrl, String comment) {
+    public Comments(String username, String profileImage, String comment) {
         this.username = username;
-        this.profileImageUrl = profileImageUrl;
+        this.profileImage = profileImage;
         this.comment = comment;
     }
 
@@ -20,12 +20,12 @@ public class Comments {
         this.username = username;
     }
 
-    public String getProfileImageUrl() {
-        return profileImageUrl;
+    public String getProfileImage() {
+        return profileImage;
     }
 
-    public void setProfileImageUrl(String profileImageUrl) {
-        this.profileImageUrl = profileImageUrl;
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
     public String getComment() {

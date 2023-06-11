@@ -38,6 +38,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -68,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DatabaseReference databaseReference, databasePost, databaseLike, databaseComment;
     String ImageUrlV, usernameV;
     CircleImageView circleImageView;
-    TextView tv_username;
-    ImageView img_post, img_send;
+    TextView tv_username, tv_title;
+    ImageView img_post, img_send, img_back;
     EditText edt_post;
     private static final int REQUEST_CODE = 101;
     Uri imageUri;
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseRecyclerAdapter<Comments, CommentViewHolder> CommentViewHolder;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,12 +91,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("App image");
+        getSupportActionBar().setTitle("App weather");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
 
         // thêm
-
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -111,6 +112,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         img_send = findViewById(R.id.img_send);
         drawerLayout = findViewById(R.id.drawerLayout);
         navView = findViewById(R.id.navView);
+
+        img_back = findViewById(R.id.img_back);
+        tv_title = findViewById(R.id.tv_title);
+        tv_title.setVisibility(View.GONE);
+        img_back.setVisibility(View.GONE);
 
         View view = navView.inflateHeaderView(R.layout.drawer_header);
         circleImageView = view.findViewById(R.id.profileimage);
@@ -212,7 +218,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         CommentViewHolder = new FirebaseRecyclerAdapter<Comments, com.example.weather.CommentViewHolder>(CommentOptions) {
             @Override
             protected void onBindViewHolder(@NonNull com.example.weather.CommentViewHolder holder, int position, @NonNull Comments model) {
-                Picasso.get().load(model.getProfileImageUrl()).into(holder.img_user_comment);
+
+                Picasso.get().load(model.getProfileImage()).into(holder.img_user_comment);
                 holder.tv_username.setText(model.getUsername());
                 holder.tv_comment.setText(model.getComment());
             }
