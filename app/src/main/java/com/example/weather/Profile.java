@@ -69,6 +69,7 @@ public class Profile extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
         storageReference = FirebaseStorage.getInstance().getReference().child("image");
         if (intent != null){
+            linkImage = intent.getStringExtra("imageLink");
             String name = intent.getStringExtra("name");
             edt_username.setText(name);
         }
@@ -114,40 +115,28 @@ public class Profile extends AppCompatActivity {
             progressDialog.setTitle("add setup profile");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
-            storageReference.child(firebaseUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        storageReference.child(firebaseUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                linkImage = uri.toString();
-                                HashMap hashMap = new HashMap();
-                                hashMap.put("username", username);
-                                hashMap.put("old", old);
-                                hashMap.put("location", location);
-                                hashMap.put("phone", phone);
-                                hashMap.put("profileImage", linkImage);
-                                hashMap.put("status", "offline");
 
-                                databaseReference.child(firebaseUser.getUid()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
-                                    @Override
-                                    public void onSuccess(Object o) {
-                                        Intent intent = new Intent(Profile.this, MainActivity.class);
-                                        startActivity(intent);
-                                        progressDialog.dismiss();
-                                        Toast.makeText(Profile.this, "Setup profile complete", Toast.LENGTH_SHORT).show();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        progressDialog.dismiss();
-                                        Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                        });
-                    }
+            HashMap hashMap = new HashMap();
+            hashMap.put("username", username);
+            hashMap.put("old", old);
+            hashMap.put("location", location);
+            hashMap.put("phone", phone);
+            hashMap.put("profileImage", linkImage);
+            hashMap.put("status", "offline");
+
+            databaseReference.child(firebaseUser.getUid()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                @Override
+                public void onSuccess(Object o) {
+                    Intent intent = new Intent(Profile.this, MainActivity.class);
+                    startActivity(intent);
+                    progressDialog.dismiss();
+                    Toast.makeText(Profile.this, "Setup profile complete", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    progressDialog.dismiss();
+                    Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -165,6 +154,20 @@ public class Profile extends AppCompatActivity {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             imageUri = data.getData();
             circleImageView.setImageURI(imageUri);
+            storageReference.child(firebaseUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        storageReference.child(firebaseUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                linkImage = uri.toString();
+
+                            }
+                        });
+                    }
+                }
+            });
         }
     }
 
