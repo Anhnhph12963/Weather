@@ -7,6 +7,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +22,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -31,6 +35,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -60,6 +65,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LatLng caugiay = new LatLng(21.036958484112965, 105.79056623615422);
     LatLng hadong = new LatLng(20.95724543050617, 105.75632759998462);
     LatLng mydinh = new LatLng(21.02353706410797, 105.77322652116061);
+    LatLng thanhxuan1 = new LatLng(20.996002041937803, 105.8097114468856);
+    LatLng caugiay1 = new LatLng(21.036958484112965, 105.79056623615423);
+    LatLng hadong1 = new LatLng(20.95724543050617, 105.75632759998463);
+    LatLng mydinh1 = new LatLng(21.02353706410797, 105.77322652116062);
+    LatLng thanhxuan2 = new LatLng(20.996002041937803, 105.8097114468857);
+    LatLng caugiay2 = new LatLng(21.036958484112965, 105.79056623615424);
+    LatLng hadong2 = new LatLng(20.95724543050617, 105.75632759998464);
+    LatLng mydinh2 = new LatLng(21.02353706410797, 105.77322652116063);
+    LatLng thanhxuan3 = new LatLng(20.996002041937803, 105.8097114468858);
+    LatLng caugiay3 = new LatLng(21.036958484112965, 105.79056623615425);
+    LatLng hadong3 = new LatLng(20.95724543050617, 105.75632759998465);
+    LatLng mydinh3 = new LatLng(21.02353706410797, 105.77322652116064);
+    LatLng thanhxuan4 = new LatLng(20.996002041937803, 105.8097114468855);
+    LatLng caugiay4 = new LatLng(21.036958484112965, 105.79056623615422);
+    LatLng hadong4 = new LatLng(20.95724543050617, 105.75632759998462);
+    LatLng mydinh4 = new LatLng(21.02353706410797, 105.77322652116061);
+    LatLng thanhxuan5 = new LatLng(20.996002041937803, 105.8097114468855);
+    LatLng caugiay5 = new LatLng(21.036958484112965, 105.79056623615422);
+    LatLng hadong5 = new LatLng(20.95724543050617, 105.75632759998462);
+    LatLng mydinh5 = new LatLng(21.02353706410797, 105.77322652116061);
+    LatLng thanhxuan6 = new LatLng(20.996002041937803, 105.8097114468855);
+    LatLng caugiay6 = new LatLng(21.036958484112965, 105.79056623615422);
+    LatLng hadong6 = new LatLng(20.95724543050617, 105.75632759998462);
+    LatLng mydinh6 = new LatLng(21.02353706410797, 105.77322652116061);
+    LatLng thanhxuan7 = new LatLng(20.996002041937803, 105.8097114468855);
+    LatLng caugiay7 = new LatLng(21.036958484112965, 105.79056623615422);
+    LatLng hadong7 = new LatLng(20.95724543050617, 105.75632759998462);
+    LatLng mydinh7 = new LatLng(21.02353706410797, 105.77322652116061);
+
 
     private ArrayList<LatLng> latLngArrayList;
 
@@ -84,6 +118,62 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         latLngArrayList.add(hadong);
         locationNameArraylist.add("Hà Đông");
         latLngArrayList.add(mydinh);
+        locationNameArraylist.add("Mỹ Đình");
+        latLngArrayList.add(thanhxuan1);
+        locationNameArraylist.add("Thanh xuân");
+        latLngArrayList.add(caugiay1);
+        locationNameArraylist.add("Cầu Giấy");
+        latLngArrayList.add(hadong1);
+        locationNameArraylist.add("Hà Đông");
+        latLngArrayList.add(mydinh1);
+        locationNameArraylist.add("Mỹ Đình");
+        latLngArrayList.add(thanhxuan2);
+        locationNameArraylist.add("Thanh xuân");
+        latLngArrayList.add(caugiay2);
+        locationNameArraylist.add("Cầu Giấy");
+        latLngArrayList.add(hadong2);
+        locationNameArraylist.add("Hà Đông");
+        latLngArrayList.add(mydinh2);
+        locationNameArraylist.add("Mỹ Đình");
+        latLngArrayList.add(thanhxuan3);
+        locationNameArraylist.add("Thanh xuân");
+        latLngArrayList.add(caugiay3);
+        locationNameArraylist.add("Cầu Giấy");
+        latLngArrayList.add(hadong3);
+        locationNameArraylist.add("Hà Đông");
+        latLngArrayList.add(mydinh3);
+        locationNameArraylist.add("Mỹ Đình");
+        latLngArrayList.add(thanhxuan4);
+        locationNameArraylist.add("Thanh xuân");
+        latLngArrayList.add(caugiay4);
+        locationNameArraylist.add("Cầu Giấy");
+        latLngArrayList.add(hadong4);
+        locationNameArraylist.add("Hà Đông");
+        latLngArrayList.add(mydinh4);
+        locationNameArraylist.add("Mỹ Đình");
+        latLngArrayList.add(thanhxuan5);
+        locationNameArraylist.add("Thanh xuân");
+        latLngArrayList.add(caugiay5);
+        locationNameArraylist.add("Cầu Giấy");
+        latLngArrayList.add(hadong5);
+        locationNameArraylist.add("Hà Đông");
+        latLngArrayList.add(mydinh5);
+        locationNameArraylist.add("Mỹ Đình");
+        latLngArrayList.add(thanhxuan6);
+        locationNameArraylist.add("Thanh xuân");
+        latLngArrayList.add(caugiay6);
+        locationNameArraylist.add("Cầu Giấy");
+        latLngArrayList.add(hadong6);
+        locationNameArraylist.add("Hà Đông");
+        latLngArrayList.add(mydinh6);
+        locationNameArraylist.add("Mỹ Đình");
+        latLngArrayList.add(thanhxuan7);
+        locationNameArraylist.add("Thanh xuân");
+        latLngArrayList.add(caugiay7);
+        locationNameArraylist.add("Cầu Giấy");
+        latLngArrayList.add(hadong7);
+        locationNameArraylist.add("Hà Đông");
+        latLngArrayList.add(mydinh7);
         locationNameArraylist.add("Mỹ Đình");
 //        View locationButton = ((View) ma
         img_location.setOnClickListener(new View.OnClickListener() {
@@ -127,11 +217,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Bitmap.Config conf = Bitmap.Config.ARGB_8888;
         Bitmap bmp = Bitmap.createBitmap(diameter, diameter, conf);
 
+        int count = 0;
+
 
 // paint defines the text color, stroke width and size
 
         for (int i = 0; i < latLngArrayList.size(); i++) {
-            int number = i + 20;
+            int number = i + 1;
             makeColorPonint(number, bmp);
             Log.d("TAG", "onMapReady: " + number);
 
@@ -143,7 +235,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 // modify canvas
         LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(latLng).title("vitri1").icon(BitmapDescriptorFactory.fromBitmap(bmp)));
+        Marker marker =  mMap.addMarker(new MarkerOptions().position(latLng).title("vitri1").icon(BitmapDescriptorFactory.fromBitmap(bmp)));
+          String id = marker.getId();
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 30));
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -161,7 +255,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        googleMap.setOnMyLocationButtonClickListener(this);
 //        googleMap.setOnMyLocationClickListener(this);
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
 
+                Dialog dialog = new Dialog(MapsActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(false);
+                dialog.setContentView(R.layout.dialog_quality_weather);
+
+//                locationDetailses.add(new LocationDetails(marker.getId(), location_right, location_left, city, Double.parseDouble(deg), Double.parseDouble(speed)));
+//                for (int i = 0; i<locationDetailses.size(); i++) {
+//                    //matching id so, alert dialog can show specific data
+//                    if (marker.getId().equals(locationDetailses.get(i).getMarkerID())){
+//                        builder.setTitle("City: "+locationDetailses.get(i).getCity());
+//                        builder.setMessage("Wind Speed: "+locationDetailses.get(i).getSpeed()+"\n"+"Degree: "+locationDetailses.get(i).getDeg()+"\n"+"We can plant WindMill here");
+//                    }}
+
+
+
+//                TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
+//                text.setText(msg);
+
+//                Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+//                dialogButton.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog.dismiss();
+//                    }
+//                });
+
+                dialog.show();
+                return false;
+            }
+        });
     }
 
     @Override
@@ -191,7 +318,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 30));
         return false;
     }
-
 
 
     private void makeColorPonint(int number, Bitmap bmp) {

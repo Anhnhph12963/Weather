@@ -8,22 +8,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="150dp"
+        android:layout_height="500dp"
+        android:background="#5079E3"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:text="Chỉ số chất lượng không khí"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +37,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="IAQ :"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -46,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="369 ug/m3"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/tv_IAQ"
             app:layout_constraintStart_toEndOf="@+id/tv_IAQ"
             app:layout_constraintTop_toTopOf="@+id/tv_IAQ" />
@@ -54,8 +57,10 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
+            android:layout_marginStart="24dp"
             android:text="Thời gian :"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_number_IAQ"
             app:layout_constraintStart_toEndOf="@+id/tv_number_IAQ"
             app:layout_constraintTop_toTopOf="@+id/tv_number_IAQ" />
@@ -66,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Sáng "
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/tv_date"
             app:layout_constraintStart_toEndOf="@+id/tv_date"
             app:layout_constraintTop_toTopOf="@+id/tv_date" />
@@ -76,6 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Độ ẩm :"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tv_IAQ"
             app:layout_constraintTop_toBottomOf="@+id/tv_IAQ" />
 
@@ -85,6 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="55%"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/tv_humidity"
             app:layout_constraintStart_toEndOf="@+id/tv_humidity"
             app:layout_constraintTop_toTopOf="@+id/tv_humidity" />
@@ -94,6 +103,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nhiệt độ :"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_humidity"
             app:layout_constraintStart_toStartOf="@+id/tv_date"
             app:layout_constraintTop_toTopOf="@+id/tv_humidity" />
@@ -104,6 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="39 C"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/tv_temperature"
             app:layout_constraintStart_toEndOf="@+id/tv_temperature"
             app:layout_constraintTop_toTopOf="@+id/tv_temperature" />
@@ -114,15 +126,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Đánh giá :"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tv_humidity"
             app:layout_constraintTop_toBottomOf="@+id/tv_humidity" />
 
         <TextView
             android:id="@+id/tv_number_evaluate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Cảnh báo Cập nhật lúc: 07/06/2023 13:00 "
-            app:layout_constraintBottom_toBottomOf="@+id/tv_evaluate"
+            android:layout_marginStart="4dp"
+            android:maxLines="2"
+            android:text="Cảnh báo Cập nhật lúc: 07/06/2023 13:00"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_evaluate"
             app:layout_constraintTop_toTopOf="@+id/tv_evaluate" />
@@ -133,43 +149,48 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Tin liên quan :"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tv_evaluate"
             app:layout_constraintTop_toBottomOf="@+id/tv_number_evaluate" />
 
         <TextView
             android:id="@+id/tv_number_news"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Đốt rơm rạ tại Gia Lâm Cập nhật lúc: 06/06/2023 16:05 "
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_tintuc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tintuc" />
+            android:layout_marginStart="4dp"
+            android:maxLines="2"
+            android:text="Đốt rơm rạ tại Gia Lâm Cập nhật lúc : 06/06/2023 16:05 "
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+            app:layout_constraintStart_toEndOf="@+id/tv_tintuc"
+            app:layout_constraintTop_toTopOf="@+id/tv_tintuc" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-            app:layout_constraintTop_toBottomOf="@+id/tv_number_news"
-            app:srcCompat="@drawable/abc" />
+            android:layout_marginTop="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/haha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_number_news" />
 
         <TextView
             android:id="@+id/tv_see"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="Xem Thêm ...."
+            android:textColor="@color/white"
             android:textSize="16dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
+            app:layout_constraintEnd_toEndOf="@id/constraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

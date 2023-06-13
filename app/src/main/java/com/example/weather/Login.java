@@ -201,7 +201,9 @@ public class Login extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (!snapshot.exists()){
                                 Intent intent = new Intent(Login.this, Profile.class);
-                                intent.putExtra("imageLink", account.getPhotoUrl());
+                                String url = account.getPhotoUrl().toString();
+                                Log.d("TAG", "onDataChange: "+url);
+                                intent.putExtra("imageLink", url);
                                 intent.putExtra("name", account.getDisplayName());
                                 startActivity(intent);
                                 Toast.makeText(getApplicationContext(),"Tạo Google thành công",Toast.LENGTH_SHORT).show();
