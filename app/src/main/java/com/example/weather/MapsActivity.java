@@ -5,11 +5,13 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,9 +25,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weather.Model.CommentQualityModel;
+import com.example.weather.adapter.QualityWeatherAdapter;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
@@ -50,6 +56,7 @@ import java.util.Random;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener,
         GoogleMap.OnMyLocationClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
+    List<CommentQualityModel> lstCommentModel;
     int diameter = 100;
     private static final int FINE_PERMISSION_CODE = 1;
     private GoogleMap mMap;
@@ -58,41 +65,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     SupportMapFragment mapFragment;
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-    ImageView img_location;
+    ImageView img_location, img_news, img_back;
 
-
+    TextView tv_number_IAQ, tv_number_date, tv_number_humidity, tv_number_temperature, tv_number_evaluate, tv_number_news, tv_see, tv_title;
+    RecyclerView recyclerView;
     LatLng thanhxuan = new LatLng(20.996002041937803, 105.8097114468855);
     LatLng caugiay = new LatLng(21.036958484112965, 105.79056623615422);
     LatLng hadong = new LatLng(20.95724543050617, 105.75632759998462);
     LatLng mydinh = new LatLng(21.02353706410797, 105.77322652116061);
-    LatLng thanhxuan1 = new LatLng(20.996002041937803, 105.8097114468856);
-    LatLng caugiay1 = new LatLng(21.036958484112965, 105.79056623615423);
-    LatLng hadong1 = new LatLng(20.95724543050617, 105.75632759998463);
-    LatLng mydinh1 = new LatLng(21.02353706410797, 105.77322652116062);
-    LatLng thanhxuan2 = new LatLng(20.996002041937803, 105.8097114468857);
-    LatLng caugiay2 = new LatLng(21.036958484112965, 105.79056623615424);
-    LatLng hadong2 = new LatLng(20.95724543050617, 105.75632759998464);
-    LatLng mydinh2 = new LatLng(21.02353706410797, 105.77322652116063);
-    LatLng thanhxuan3 = new LatLng(20.996002041937803, 105.8097114468858);
-    LatLng caugiay3 = new LatLng(21.036958484112965, 105.79056623615425);
-    LatLng hadong3 = new LatLng(20.95724543050617, 105.75632759998465);
-    LatLng mydinh3 = new LatLng(21.02353706410797, 105.77322652116064);
-    LatLng thanhxuan4 = new LatLng(20.996002041937803, 105.8097114468855);
-    LatLng caugiay4 = new LatLng(21.036958484112965, 105.79056623615422);
-    LatLng hadong4 = new LatLng(20.95724543050617, 105.75632759998462);
-    LatLng mydinh4 = new LatLng(21.02353706410797, 105.77322652116061);
-    LatLng thanhxuan5 = new LatLng(20.996002041937803, 105.8097114468855);
-    LatLng caugiay5 = new LatLng(21.036958484112965, 105.79056623615422);
-    LatLng hadong5 = new LatLng(20.95724543050617, 105.75632759998462);
-    LatLng mydinh5 = new LatLng(21.02353706410797, 105.77322652116061);
-    LatLng thanhxuan6 = new LatLng(20.996002041937803, 105.8097114468855);
-    LatLng caugiay6 = new LatLng(21.036958484112965, 105.79056623615422);
-    LatLng hadong6 = new LatLng(20.95724543050617, 105.75632759998462);
-    LatLng mydinh6 = new LatLng(21.02353706410797, 105.77322652116061);
-    LatLng thanhxuan7 = new LatLng(20.996002041937803, 105.8097114468855);
-    LatLng caugiay7 = new LatLng(21.036958484112965, 105.79056623615422);
-    LatLng hadong7 = new LatLng(20.95724543050617, 105.75632759998462);
-    LatLng mydinh7 = new LatLng(21.02353706410797, 105.77322652116061);
+    LatLng thanhxuan1 = new LatLng(21.01415087541889, 105.74054497999343);
+    LatLng caugiay1 = new LatLng(21.011666998362294, 105.7452659889851);
+    LatLng hadong1 = new LatLng(21.006659048378612, 105.74470811982496);
+    LatLng mydinh1 = new LatLng(20.99836560774121, 105.73676918002924);
+    LatLng thanhxuan2 = new LatLng(21.00297269601158, 105.73316401537109);
+    LatLng caugiay2 = new LatLng(20.999487182804028, 105.7337221918186);
+    LatLng hadong2 = new LatLng(20.994799623547337, 105.73316465907484);
+    LatLng mydinh2 = new LatLng(20.98805745970365, 105.76109438711876);
+    LatLng thanhxuan3 = new LatLng(21.017835495765652, 105.78426644792702);
+    LatLng caugiay3 = new LatLng(21.007325463847934, 105.77885067545006);
+    LatLng hadong3 = new LatLng(21.041013043984737, 105.79472862600348);
+    LatLng mydinh3 = new LatLng(21.031783713413795, 105.80584405810978);
+    LatLng thanhxuan4 = new LatLng(21.037307833187484, 105.7953783954595);
+    LatLng caugiay4 = new LatLng(21.027808838487825, 105.7911204871416);
+    LatLng hadong4 = new LatLng(21.005643375787688, 105.79783263179253);
+    LatLng mydinh4 = new LatLng(21.03582494708833, 105.83659092065274);
+    LatLng thanhxuan5 = new LatLng(21.028078120798806, 105.83615869624975);
+    LatLng caugiay5 = new LatLng(21.02410457222415, 105.85795366275453);
+    LatLng hadong5 = new LatLng(20.98148428702097, 105.87182773449652);
+    LatLng mydinh5 = new LatLng(20.956608715699733, 105.8883628794604);
+    LatLng thanhxuan6 = new LatLng(21.13360891560745, 105.77364318540234);
+    LatLng caugiay6 = new LatLng(20.990760029737444, 105.83722413137573);
+    LatLng hadong6 = new LatLng(20.961577927780898, 105.87286745032998);
+    LatLng mydinh6 = new LatLng(21.01744074505883, 105.81960346072589);
+    LatLng thanhxuan7 = new LatLng(21.055973124862845, 105.79780763130194);
+    LatLng caugiay7 = new LatLng(21.064662760505943, 105.78835176658349);
+    LatLng hadong7 = new LatLng(21.072341445280227, 105.7739856630961);
+    LatLng mydinh7 = new LatLng(21.05260424176765, 105.77796431658712);
 
 
     private ArrayList<LatLng> latLngArrayList;
@@ -108,7 +116,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         getLastlocation();
 
         img_location = findViewById(R.id.img_location);
+        img_back = findViewById(R.id.img_back);
+        tv_title = findViewById(R.id.tv_title);
 
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        tv_title.setText("Google Maps");
         latLngArrayList = new ArrayList<>();
         locationNameArraylist = new ArrayList<>();
         latLngArrayList.add(thanhxuan);
@@ -212,8 +232,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-
         Bitmap.Config conf = Bitmap.Config.ARGB_8888;
         Bitmap bmp = Bitmap.createBitmap(diameter, diameter, conf);
 
@@ -232,11 +250,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }
 
-
-// modify canvas
         LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-        Marker marker =  mMap.addMarker(new MarkerOptions().position(latLng).title("vitri1").icon(BitmapDescriptorFactory.fromBitmap(bmp)));
-          String id = marker.getId();
+        Marker marker = mMap.addMarker(new MarkerOptions().position(latLng).title("vitri1").icon(BitmapDescriptorFactory.fromBitmap(bmp)));
+        String id = marker.getId();
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 30));
 
@@ -260,10 +276,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public boolean onMarkerClick(Marker marker) {
 
                 Dialog dialog = new Dialog(MapsActivity.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setCancelable(false);
+                WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+                layoutParams.copyFrom(dialog.getWindow().getAttributes());
+                layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+                layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                dialog.setCancelable(true);
                 dialog.setContentView(R.layout.dialog_quality_weather);
-
+                dialog.getWindow().setAttributes(layoutParams);
+                addListCommentDialogQW();
 //                locationDetailses.add(new LocationDetails(marker.getId(), location_right, location_left, city, Double.parseDouble(deg), Double.parseDouble(speed)));
 //                for (int i = 0; i<locationDetailses.size(); i++) {
 //                    //matching id so, alert dialog can show specific data
@@ -271,11 +291,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                        builder.setTitle("City: "+locationDetailses.get(i).getCity());
 //                        builder.setMessage("Wind Speed: "+locationDetailses.get(i).getSpeed()+"\n"+"Degree: "+locationDetailses.get(i).getDeg()+"\n"+"We can plant WindMill here");
 //                    }}
+                RecyclerView recyclerView1 = dialog.findViewById(R.id.ryc_comment_quality);
+                QualityWeatherAdapter adapter = new QualityWeatherAdapter(lstCommentModel);
+                recyclerView1.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
 
 
+                img_news = dialog.findViewById(R.id.img_news);
+                img_news.setImageResource(R.drawable.abc);
+                tv_number_IAQ = dialog.findViewById(R.id.tv_number_IAQ);
+                tv_number_IAQ.setText("1000");
+                tv_number_date = dialog.findViewById(R.id.tv_number_date);
+                tv_number_date.setText("chiều");
+                tv_number_humidity = dialog.findViewById(R.id.tv_number_humidity);
+                tv_number_humidity.setText("100%");
+                tv_number_temperature = dialog.findViewById(R.id.tv_number_temperature);
+                tv_number_temperature.setText("29°C");
+                tv_number_evaluate = dialog.findViewById(R.id.tv_number_evaluate);
+                tv_number_evaluate.setText("Có thể có bão to");
+                tv_number_news = dialog.findViewById(R.id.tv_number_news);
+                tv_number_news.setText("Sóng thần sắp đến");
+                tv_see = dialog.findViewById(R.id.tv_see);
+                tv_see.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-//                TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
-//                text.setText(msg);
+                    }
+                });
+
 
 //                Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
 //                dialogButton.setOnClickListener(new View.OnClickListener() {
@@ -287,9 +330,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 dialog.show();
                 return false;
+
             }
         });
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -337,8 +382,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    public int getRandomColor() {
+    private int getRandomColor() {
         Random rnd = new Random();
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+    }
+
+    private void addListCommentDialogQW() {
+        lstCommentModel = new ArrayList<>();
+        lstCommentModel.add(new CommentQualityModel("hello1", "hello2", "10/02/2001"));
+        lstCommentModel.add(new CommentQualityModel("hello1", "hello2", "10/02/2001"));
+        lstCommentModel.add(new CommentQualityModel("hello1", "hello2", "10/02/2001"));
+        lstCommentModel.add(new CommentQualityModel("hello1", "hello2", "10/02/2001"));
+        lstCommentModel.add(new CommentQualityModel("hello1", "hello2", "10/02/2001"));
+        lstCommentModel.add(new CommentQualityModel("hello1", "hello2", "10/02/2001"));
+        lstCommentModel.add(new CommentQualityModel("hello1", "hello2", "10/02/2001"));
+        lstCommentModel.add(new CommentQualityModel("hello1", "hello2", "10/02/2001"));
     }
 }

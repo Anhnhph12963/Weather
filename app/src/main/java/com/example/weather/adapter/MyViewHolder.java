@@ -1,4 +1,4 @@
-package com.example.weather;
+package com.example.weather.adapter;
 
 import android.graphics.Color;
 import android.view.View;
@@ -18,10 +18,17 @@ import com.google.firebase.database.ValueEventListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyViewHolder extends RecyclerView.ViewHolder {
-    CircleImageView profile_image;
-    ImageView img_like, img_send, img_comment, img_post;
-    TextView tv_username, tv_timeAge, title_post, tv_like, tv_comment;
-    EditText edt_comment;
+    public CircleImageView profile_image;
+    public ImageView img_like;
+    public ImageView img_send;
+    ImageView img_comment;
+    public ImageView img_post;
+    public TextView tv_username;
+    public TextView tv_timeAge;
+    public TextView title_post;
+    TextView tv_like;
+    TextView tv_comment;
+    public EditText edt_comment;
     public static RecyclerView recyclerView;
 
     public MyViewHolder(@NonNull View itemView) {

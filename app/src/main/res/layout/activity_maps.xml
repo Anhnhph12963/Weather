@@ -27,7 +27,6 @@
         android:layout_margin="10dp"
         android:background="@drawable/bg_search_maps"
         android:elevation="5dp"
-        android:visibility="gone"
         map:iconifiedByDefault="false"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent"
@@ -36,11 +35,11 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="36dp"
-        android:background="@drawable/ic_location"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/ic_mylocation"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
