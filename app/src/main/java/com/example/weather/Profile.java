@@ -46,14 +46,15 @@ public class Profile extends AppCompatActivity {
     StorageReference storageReference;
     ProgressDialog progressDialog;
     ProgressBar progressBar;
-    Intent intent ;
+    Intent intent;
     String linkImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-       linkImage = "https://i.pinimg.com/736x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg";
-        intent= getIntent();
+        linkImage = "https://i.pinimg.com/736x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg";
+        intent = getIntent();
         circleImageView = findViewById(R.id.img_profile);
         edt_username = findViewById(R.id.edt_username);
         edt_old = findViewById(R.id.edt_old);
@@ -65,10 +66,10 @@ public class Profile extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        Log.d("TAG", "onCreate: "+firebaseAuth.getUid()+firebaseUser.getUid());
+        Log.d("TAG", "onCreate: " + firebaseAuth.getUid() + firebaseUser.getUid());
         databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
         storageReference = FirebaseStorage.getInstance().getReference().child("image");
-        if (intent != null){
+        if (intent != null) {
             linkImage = intent.getStringExtra("imageLink");
             String name = intent.getStringExtra("name");
             edt_username.setText(name);
